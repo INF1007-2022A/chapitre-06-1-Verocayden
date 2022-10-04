@@ -83,12 +83,14 @@ def frequence(sentence: str) -> dict:
                 histogramme[letter] = 1
             elif letter in histogramme:
                 histogramme[letter] += 1
-    for letter in histogramme:
-        if histogramme[letter] >= 5:
-            new_histogramme[letter] = histogramme[letter]
-    sorted(new_histogramme.values())
-    print(new_histogramme)
-    return new_histogramme
+
+    # Print most frequent letters; change data structure to list (it's easier to sort)
+    sorted_histogramme = sorted([(letter, histogramme[letter]) for letter in histogramme if histogramme[letter] > 5], reverse=True)
+    for element in sorted_histogramme:
+        print(f"{element[0]} apparaît {element[1]} fois.")
+    print(sorted_histogramme)
+
+    return sorted_histogramme
 
 
 def get_recipes():
